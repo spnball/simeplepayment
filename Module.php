@@ -43,7 +43,8 @@ class Module {
         return array_merge(
                 include __DIR__ . '/config/route.php',
                 include __DIR__ . '/config/interface.php',
-                include __DIR__ . '/config/services.php'
+                include __DIR__ . '/config/services.php',
+                include __DIR__ . '/config/payment.php'
         );
     }
 }

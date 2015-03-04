@@ -8,6 +8,9 @@
         <testsuite name="Model">
             <file>./Payment/Model/CardTypeDetect.php</file>
         </testsuite>
+         <testsuite name="Service">
+            <file>./Payment/Service/PaymentSelector.php</file>
+        </testsuite>
         <testsuite name="Paypal">
             <file>./Payment/Controller/PaypalLibrary.php</file>
         </testsuite>
