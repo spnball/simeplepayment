@@ -5,6 +5,9 @@
         <testsuite name="Controller">
             <file>./Payment/Controller/PaymentController.php</file>
         </testsuite>
+        <testsuite name="Model">
+            <file>./Payment/Model/CardTypeDetect.php</file>
+        </testsuite>
         <testsuite name="Paypal">
             <file>./Payment/Controller/PaypalLibrary.php</file>
         </testsuite>
