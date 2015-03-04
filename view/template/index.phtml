@@ -1,0 +1,49 @@
+<form>
+    <fieldset>
+    	<legend>Order :</legend>
+        <div class="form-group">
+            <label for="price-input">Price</label>
+            <input class="form-control" id="price-input" placeholder="Tatal price" required>
+        </div>
+        <div class="form-group">
+            <label for="currency-input">Currency</label>
+            <select class="form-control" id="currency-input">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="THB">THB</option>
+                <option value="HKD">HKD</option>
+                <option value="SGD">SGD</option>
+                <option value="AUD">AUD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="full-name">Full name</label>
+            <input class="form-control" type="text" id="full-name" placeholder="Firstname" required>
+        </div>
+    </fieldset>
+    <fieldset>
+    	<legend>Credit card :</legend>
+    	<div class="form-group">
+            <label for="holdername-input">Holder name</label>
+            <input class="form-control" id="holdername-input" placeholder="Firstname and lastname of credit card holder" required>
+        </div>
+        <div class="form-group">
+            <label for="holdername-input">Price</label>
+            <input class="form-control" id="holdername-input" placeholder="Tatal price" required>
+        </div>
+        <div class="form-group">
+            <label for="number-input">Number</label>
+            <input class="form-control" id="number-input" placeholder="Credit car number" required>
+        </div>
+        <div class="form-group">
+            <label for="expiration-input">Expiration</label>
+            <select class="form-control" id="expiration-input">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ccv-input">CCV</label>
+            <input class="form-control" id="ccv-input" placeholder="3 digit of ccv" required>
+        </div>
+	</fieldset>
+	<button type="submit" class="btn btn-default">Checkout</button>
+</form>
