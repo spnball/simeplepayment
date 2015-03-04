@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./Bootstrap.php">
+    <testsuites name="Payment">
+        <testsuite name="Controller">
+            <file>./Payment/Controller/PaymentController.php</file>
+        </testsuite>
+        <testsuite name="Paypal">
+            <file>./Payment/Controller/PaypalLibrary.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
