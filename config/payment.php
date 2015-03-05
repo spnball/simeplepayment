@@ -8,6 +8,8 @@ return array(
                         // api config (optional)
                         'api' => array(
                                 'mode' => 'sandbox',
+                                //'clientId' => 'type an api client id here',
+                                //'secret' => 'type a secret key here'
                         )
                 ),
                 'braintree' => array (
