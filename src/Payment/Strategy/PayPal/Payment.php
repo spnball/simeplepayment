@@ -27,6 +27,11 @@ class Payment implements PaymentStrategy
     protected $token;
 
     /**
+     * @var \PayPal\Api\Payment
+     */
+    protected $payment;
+
+    /**
      * @var \Zend\ServiceManager\ServiceLocatorInterface
      */
     protected $serviceLocator;
@@ -91,6 +96,10 @@ class Payment implements PaymentStrategy
         return false;
     }
 
+    /**
+     * get token key generator
+     * @return \PayPal\Auth\OAuthTokenCredential
+     */
     public function authen ()
     {
         $config = $this->getApiConfig();
@@ -103,6 +112,32 @@ class Payment implements PaymentStrategy
         return $this->token;
     }
 
+    /**
+     * @return string
+     */
+    public function getPaymentId ()
+    {
+        if (!$this->payment) {
+            throw \Exception ('Payment has not been created');
+        }
+        return $this->payment->getId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentState ()
+    {
+        if (!$this->payment) {
+            throw \Exception ('Payment has not been created');
+        }
+        return $this->payment->getState();
+    }
+
+    /**
+     * @param array $info
+     * @return boolean
+     */
     public function pay ($info)
     {
         $config = $this->getApiConfig();
@@ -134,13 +169,13 @@ class Payment implements PaymentStrategy
         $transaction->setAmount($amount);
         $transaction->setDescription("creating a direct payment with credit card");
 
-        $payment = new PayPalPayment();
-        $payment->setIntent("sale");
-        $payment->setPayer($payer);
-        $payment->setTransactions(array($transaction));
+        $this->payment = new PayPalPayment();
+        $this->payment->setIntent("sale");
+        $this->payment->setPayer($payer);
+        $this->payment->setTransactions(array($transaction));
 
         try {
-            $payment->create($apiContext);
+            $this->payment->create($apiContext);
             return true;
         } catch (\Exception $e) {
             return false;
