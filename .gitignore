@@ -1,6 +1,6 @@
-config/payment.php
 .project
 .settings
 
-src/Payment/Strategy/Paypal/sdk
+config/payment.php
+src/Payment/Strategy/PayPal/sdk
 src/Payment/Strategy/Braintree/sdk
