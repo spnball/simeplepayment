@@ -26,5 +26,4 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('IndexController');
         $this->assertMatchedRouteName('standardPayment');
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PaymentTest\Model;
+namespace PaymentTest\Service;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use PHPUnitModule\Bootstrap;

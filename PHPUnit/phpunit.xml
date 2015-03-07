@@ -12,7 +12,9 @@
             <file>./Payment/Service/PaymentSelector.php</file>
         </testsuite>
         <testsuite name="Paypal">
-            <file>./Payment/Controller/PaypalLibrary.php</file>
+            <file>./Payment/Controller/PayPalLibrary.php</file>
+            <file>./Payment/Service/PayPalLibraryAccess.php</file>
+            <file>./Payment/Service/PayPalPayment.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

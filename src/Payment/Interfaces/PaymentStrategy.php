@@ -6,11 +6,12 @@ interface PaymentStrategy {
      * Get payment name
      * @return string
      */
-    public function getPaymentName();
+    public function getPaymentName ();
 
     /**
      * Select the payment type condition
      * @param string $cardInfomation
      */
-    public function selectPayment($cardInfomation);
+    public function selectPayment ($cardInfomation);
+
 }
