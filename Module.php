@@ -27,7 +27,7 @@ class Module {
                     __NAMESPACE__ . 'Test' => __DIR__ . '/PHPUnit/' . __NAMESPACE__,
 
                     // Paypal SDK library namespace path
-                    'Paypal'  => __DIR__ . '/src/' . __NAMESPACE__ . '/Adapter/Paypal/sdk'
+                    'PayPal'  => __DIR__ . '/src/' . __NAMESPACE__ . '/Strategy/Paypal/sdk/lib/PayPal'
                 ),
             ),
         );
