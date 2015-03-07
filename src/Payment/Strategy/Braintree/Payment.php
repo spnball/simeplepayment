@@ -14,6 +14,11 @@ use Payment\Model\CardTypeDetect;
 class Payment implements PaymentStrategy
 {
     /**
+     * @var unknown
+     */
+    protected $payment;
+
+    /**
      * @var \Zend\ServiceManager\ServiceLocatorInterface
      */
     protected $serviceLocator;
@@ -64,5 +69,60 @@ class Payment implements PaymentStrategy
         }
 
         return true;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see \Payment\Interfaces\PaymentStrategy::getPaymentId()
+     */
+    public function getPaymentId()
+    {
+        if (!$this->payment) {
+            throw new \Exception ('Payment has not been created');
+        }
+
+        return $this->payment->transaction->_attributes['id'];
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see \Payment\Interfaces\PaymentStrategy::getPaymentState()
+     */
+    public function getPaymentState()
+    {
+        if (!$this->payment) {
+            throw new \Exception ('Payment has not been created');
+        }
+        return $this->payment->transaction->status;
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see \Payment\Interfaces\PaymentStrategy::pay()
+     */
+    public function pay($info)
+    {
+        $config = $this->getApiConfig();
+
+        \Braintree_Configuration::environment('sandbox');
+        \Braintree_Configuration::merchantId($config['merchantId']);
+        \Braintree_Configuration::publicKey($config['publicKey']);
+        \Braintree_Configuration::privateKey($config['privateKey']);
+
+
+        $this->payment = \Braintree_Transaction::sale(array(
+                'amount' => $info['price'],
+                'customer' => array(
+                        'firstName'    => !empty($info['firstname']) ? $info['firstname'] : false,
+                        'lastName'    => !empty($info['lastName']) ? $info['lastName'] : false
+                ),
+                'creditCard' => array(
+                        'number' => $info['number'],
+                        'expirationMonth' => $info['expiredMonth'],
+                        'expirationYear' => $info['expiredYear']
+                )
+        ));
+
+        return $this->payment->success ? true : false;
     }
 }

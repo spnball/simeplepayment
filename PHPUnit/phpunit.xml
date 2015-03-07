@@ -14,7 +14,9 @@
         <testsuite name="Paypal">
             <file>./Payment/Controller/PayPalLibrary.php</file>
             <file>./Payment/Service/PayPalLibraryAccess.php</file>
-            <file>./Payment/Service/PayPalPayment.php</file>
+            <!--  file>./Payment/Service/PayPalPayment.php</file -->
+            <file>./Payment/Service/BraintreeLibraryAccess.php</file>
+            <file>./Payment/Service/BraintreePayment.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

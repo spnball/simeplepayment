@@ -36,13 +36,24 @@ class PayPalPayment extends AbstractHttpControllerTestCase
         $this->assertTrue($token !== false, 'get token sucessfully');
     }
 
+    /**
+     * @expectedException Exception
+     */
+    public function testGetPaymentIDException()
+    {
+        $payment = new Payment();
+        $payment->setServiceLocator($this->getApplicationServiceLocator());
+
+        $payment->getPaymentId();
+    }
+
     public function testPaySuccess ()
     {
         $info = array(
         	   'type' => 'visa',
                'number' => '4446283280247004',
                'expiredMonth' => '11',
-               'expiredYear' => '2018',
+               'expiredYear' => '18',
                'firstname' => 'Joe',
                'lastname' => 'Shopper',
                'currency' => 'USD',

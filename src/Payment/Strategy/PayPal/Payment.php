@@ -118,7 +118,7 @@ class Payment implements PaymentStrategy
     public function getPaymentId ()
     {
         if (!$this->payment) {
-            throw \Exception ('Payment has not been created');
+            throw new \Exception ('Payment has not been created');
         }
         return $this->payment->getId();
     }
@@ -129,7 +129,7 @@ class Payment implements PaymentStrategy
     public function getPaymentState ()
     {
         if (!$this->payment) {
-            throw \Exception ('Payment has not been created');
+            throw new \Exception ('Payment has not been created');
         }
         return $this->payment->getState();
     }
@@ -149,7 +149,7 @@ class Payment implements PaymentStrategy
         $card->setType($info['type']);
         $card->setNumber($info['number']);
         $card->setExpireMonth($info['expiredMonth']);
-        $card->setExpireYear($info['expiredYear']);
+        $card->setExpireYear('20' . $info['expiredYear']);
         $card->setFirstName($info['firstname']);
         $card->setLastName($info['lastname']);
 

@@ -26,8 +26,9 @@ class Module {
                     // UnitTesting namespace
                     __NAMESPACE__ . 'Test' => __DIR__ . '/PHPUnit/' . __NAMESPACE__,
 
-                    // Paypal SDK library namespace path
-                    'PayPal'  => __DIR__ . '/src/' . __NAMESPACE__ . '/Strategy/PayPal/sdk/lib/PayPal'
+                    // Paypal and paypal SDK library namespace path
+                    'PayPal'  => __DIR__ . '/src/' . __NAMESPACE__ . '/Strategy/PayPal/sdk/lib/PayPal',
+                    'Braintree'  => __DIR__ . '/src/' . __NAMESPACE__ . '/Strategy/Braintree/sdk/lib/Braintree'
                 ),
             ),
         );
