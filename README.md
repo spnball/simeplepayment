@@ -20,7 +20,7 @@ clone Braintree sdk
 clone Paypal sdk
 
     cd  /path_of_project/module/Payment/src/Payment/Strategy/Paypal
-    git clone  https://github.com/braintree/braintree_php.git sdk
+    git clone  https://github.com/paypal/PayPal-PHP-SDK.git sdk
     
 Configuration
 -------------
