@@ -1,4 +1,4 @@
-Simple 
+Simple Payment
 =======================
 
 
