@@ -1,13 +1,16 @@
-<form>
+<form method="post" action="<?= $this->url('standardPayment', array(
+                    'controller' => 'indext',
+                    'action'     => 'pay',
+            )) ?>">
     <fieldset>
     	<legend>Order :</legend>
         <div class="form-group">
             <label for="price-input">Price</label>
-            <input class="form-control" id="price-input" placeholder="Tatal price" required>
+            <input name="price" class="form-control" id="price-input" placeholder="Tatal price" required>
         </div>
         <div class="form-group">
             <label for="currency-input">Currency</label>
-            <select class="form-control" id="currency-input">
+            <select name="currency" class="form-control" id="currency-input">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
                 <option value="THB">THB</option>
@@ -25,19 +28,24 @@
     	<legend>Credit card :</legend>
     	<div class="form-group">
             <label for="holdername-input">Holder name</label>
-            <input class="form-control" id="holdername-input" placeholder="Firstname and lastname of credit card holder" required>
-        </div>
-        <div class="form-group">
-            <label for="holdername-input">Price</label>
-            <input class="form-control" id="holdername-input" placeholder="Tatal price" required>
-        </div>
+            <input name="firstname" class="form-control" id="holdername-input" placeholder="Firstname" required>
+            <input name="lastname" class="form-control" id="holdername-input" placeholder="Lastname" required>
+            </div>
         <div class="form-group">
             <label for="number-input">Number</label>
-            <input class="form-control" id="number-input" placeholder="Credit car number" required>
+            <input name="number" class="form-control" id="number-input" placeholder="Credit car number" required>
         </div>
         <div class="form-group">
             <label for="expiration-input">Expiration</label>
-            <select class="form-control" id="expiration-input">
+            <select name="expiredMonth" id="currency-input">
+            <?php for ($i=1; $i<=12; $i++) : ?>
+                <option value="<?php printf("%02d", $i)?>"><?php printf("%02d", $i)?></option>
+            <?php endfor;?>
+            </select>
+            <select name="expiredYear" id="currency-input">
+            <?php for ($i=14; $i<=30; $i++) : ?>
+                <option value="<?php printf("%02d", $i)?>">20<?php printf("%02d", $i)?></option>
+            <?php endfor;?>
             </select>
         </div>
         <div class="form-group">

@@ -23,6 +23,14 @@ class IndexController extends AbstractActionController{
     }
 
     public function payAction() {
+        $view = new ViewModel();
 
+        $post = $this->getRequest()->getPost();
+        $paymentService = $this->getServiceLocator()->get('payment');
+
+        $result = $paymentService->pay($post);
+
+        return $view->setVariable('success', $result)
+                    ->setTemplate('payment/pay');
     }
 }
