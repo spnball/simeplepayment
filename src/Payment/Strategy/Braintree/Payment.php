@@ -112,10 +112,10 @@ class Payment implements PaymentStrategy
 
         $this->payment = \Braintree_Transaction::sale(array(
                 'amount' => $info['price'],
-                'customer' => array(
-                        'firstName'    => !empty($info['firstname']) ? $info['firstname'] : false,
-                        'lastName'    => !empty($info['lastName']) ? $info['lastName'] : false
-                ),
+//                 'customer' => array(
+//                         'firstName'    => !empty($info['firstname']) ? $info['firstname'] : false,
+//                         'lastName'    => !empty($info['lastName']) ? $info['lastName'] : false
+//                 ),
                 'creditCard' => array(
                         'number' => $info['number'],
                         'expirationMonth' => $info['expiredMonth'],

@@ -8,15 +8,19 @@
         <testsuite name="Model">
             <file>./Payment/Model/CardTypeDetect.php</file>
         </testsuite>
-         <testsuite name="Service">
+        <testsuite name="Service">
             <file>./Payment/Service/PaymentSelector.php</file>
+            <file>./Payment/Service/PaymentService.php</file>
+        </testsuite>
+        <testsuite name="TableGateway">
+            <file>./Payment/TableGateway/PaymentTable.php</file>
         </testsuite>
         <testsuite name="Paypal">
             <file>./Payment/Controller/PayPalLibrary.php</file>
             <file>./Payment/Service/PayPalLibraryAccess.php</file>
-            <!--  file>./Payment/Service/PayPalPayment.php</file -->
+            <!-- file>./Payment/Service/PayPalPayment.php</file-->
             <file>./Payment/Service/BraintreeLibraryAccess.php</file>
-            <file>./Payment/Service/BraintreePayment.php</file>
+            <!-- file>./Payment/Service/BraintreePayment.php</file -->
         </testsuite>
     </testsuites>
 </phpunit>

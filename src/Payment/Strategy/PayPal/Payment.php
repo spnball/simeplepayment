@@ -120,6 +120,7 @@ class Payment implements PaymentStrategy
         if (!$this->payment) {
             throw new \Exception ('Payment has not been created');
         }
+
         return $this->payment->getId();
     }
 
@@ -134,6 +135,14 @@ class Payment implements PaymentStrategy
         return $this->payment->getState();
     }
 
+    public function message()
+    {
+        if (!$this->payment) {
+            throw new \Exception ('Payment has not been created');
+        }
+        return $this->payment->getFailedTransactions()->getDetails();
+    }
+
     /**
      * @param array $info
      * @return boolean
@@ -145,8 +154,10 @@ class Payment implements PaymentStrategy
         $apiContext = new ApiContext($this->authen(), 'Request' . time());
         $apiContext->setConfig($config['sdk']);
 
+        $typeDetector = new CardTypeDetect();
+
         $card = new CreditCard();
-        $card->setType($info['type']);
+        $card->setType(strtolower($typeDetector->detect($info['number'])));
         $card->setNumber($info['number']);
         $card->setExpireMonth($info['expiredMonth']);
         $card->setExpireYear('20' . $info['expiredYear']);

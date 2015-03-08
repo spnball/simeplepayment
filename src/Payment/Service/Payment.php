@@ -1,6 +1,7 @@
 <?php
 namespace Payment\Service;
 
+use Payment\TableGateway\PaymentTable;
 /**
  * Call the paying api
  * @copyright Copyright (c) 2014
@@ -12,6 +13,11 @@ class Payment  {
      * @var \Zend\ServiceManager\ServiceLocatorAwareInterface
      */
     protected $serviceLocator;
+
+    /**
+     * @var \Payment\Interfaces\PaymentStrategy
+     */
+    protected $payment;
 
     /**
      * (non-PHPdoc)
@@ -47,10 +53,59 @@ class Payment  {
             $payment = new $options['strategy']();
 
             if ($payment->selectPayment($creditcardInfo) !== false) {
+                $payment->setServiceLocator($this->serviceLocator);
                 return $payment;
             }
         }
 
         return false;
+    }
+
+    /**
+     * @param \Payment\Interfaces\PaymentStrategy $payment
+     * @throws \Exception
+     * @return \Payment\Service\Payment
+     */
+    public function save ($creditcardInfo, \Payment\Interfaces\PaymentStrategy $payment = null)
+    {
+        if ($payment === null) {
+            if ($this->payment == null) {
+                throw new \Exception('Invalid payment');
+            }
+            $payment = $this->payment;
+        }
+
+        $paymentTable = new PaymentTable();
+        $paymentTable->setServiceLocator($this->serviceLocator);
+        $paymentTable
+            ->setPrice($creditcardInfo['price'])
+            ->setCurrency($creditcardInfo['currency'])
+            ->setFirstname($creditcardInfo['firstname'])
+            ->setLastname($creditcardInfo['lastname'])
+            ->setTransactionRef($payment->getPaymentId())
+            ->setPaymentStrategy($payment->getPaymentName());
+
+        $paymentTable->savePayment();
+        return $this;
+    }
+
+    /**
+     * @param unknown $creditcardInfo
+     * @return boolean
+     */
+    public function pay ($creditcardInfo)
+    {
+        $this->payment = $this->getPaymentStrategy($creditcardInfo);
+
+        if ($this->payment === false) {
+            return false;
+        }
+
+        if ($this->payment->pay($creditcardInfo) === false) {
+            return false;
+        }
+
+        $this->save($creditcardInfo);
+        return true;
     }
 }
