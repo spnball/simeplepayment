@@ -28,6 +28,20 @@ Edit the api and database configuration in
 
     /path_of_project/module/Payment/config/payment.php
     
+MySql table
+-----------
+    CREATE TABLE IF NOT EXISTS `payment` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `ref` VARCHAR(45) NOT NULL,
+      `payment` ENUM('braintree', 'paypal') NOT NULL,
+      `price` INT NOT NULL,
+      `currency` VARCHAR(45) NOT NULL,
+      `firstname` VARCHAR(45) NULL,
+      `lastname` VARCHAR(45) NULL,
+      `created` DATETIME NOT NULL,
+      PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    
 PHPUnit
 -------
 you and run phpunit command in this directory
